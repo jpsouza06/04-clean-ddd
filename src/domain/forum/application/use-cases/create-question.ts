@@ -1,6 +1,5 @@
 import { UniqueEntityId } from '@/core/entities/unique-entity-id';
 import { Question } from '../../enterprise/entities/question';
-import { AnswersRepository } from '../repositories/answer-repository'
 import { QuestionRepository } from '../repositories/question-repository';
 
 interface CreateQuestionUseCaseRequest {
