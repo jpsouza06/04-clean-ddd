@@ -5,7 +5,7 @@ import { UniqueEntityId } from "@/core/entities/unique-entity-id"
 import { Optional } from "@/core/types/optional"
 import { Slug } from "./value-objects/slug"
 
-interface QuestionProps {
+export interface QuestionProps {
    authorId: UniqueEntityId
    bestAnswerId?: UniqueEntityId
    title: string
@@ -73,7 +73,7 @@ export class Question extends Entity<QuestionProps>  {
    }
 
    static create(
-      props: Optional<QuestionProps, 'createdAt' | 'slug'>, 
+      props: Optional<QuestionProps, 'createdAt' | 'slug'>,
       id?: UniqueEntityId
    ) {
       const question = new Question({
