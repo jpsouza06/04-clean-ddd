@@ -2,7 +2,7 @@ import { UniqueEntityId } from '@/core/entities/unique-entity-id';
 import { QuestionRepository } from '../repositories/question-repository';
 import { QuestionComment } from '../../enterprise/entities/question-comment';
 import { QuestionCommentRepository } from '../repositories/question-comments-repository';
-import { ResourceNotFoundError } from './errors/resource-not-found-error';
+import { ResourceNotFoundError } from '@/core/erros/errors/resource-not-found-error';
 import { Either, left, right } from '@/core/either';
 
 interface CommentOnQuestionUseCaseRequest {

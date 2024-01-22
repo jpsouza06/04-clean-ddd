@@ -1,8 +1,8 @@
 import { Either, left, right } from '@/core/either';
 import { Question } from '../../enterprise/entities/question';
 import { QuestionRepository } from '../repositories/question-repository';
-import { ResourceNotFoundError } from './errors/resource-not-found-error';
-import { NotAllowedError } from './errors/not-allowed-error';
+import { ResourceNotFoundError } from '@/core/erros/errors/resource-not-found-error';
+import { NotAllowedError } from '@/core/erros/errors/not-allowed-error';
 import { QuestionAttachmentRepository } from '../repositories/question-attachment-repository';
 import { QuestionAttachmentList } from '../../enterprise/entities/question-attachment-list';
 import { QuestionAttachment } from '../../enterprise/entities/question-attachment';
@@ -45,8 +45,8 @@ export class EditQuestionUseCase {
          return left(new NotAllowedError())
       }
 
-      const currentQuestionAttachments = 
-      await this.questionAttachmentRepoistory.findManyByQuestionId(questionId)
+      const currentQuestionAttachments =
+         await this.questionAttachmentRepoistory.findManyByQuestionId(questionId)
 
       const questionAttachmentList = new QuestionAttachmentList(
          currentQuestionAttachments
