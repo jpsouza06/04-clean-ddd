@@ -2,15 +2,21 @@ import { InMemoryAnswersRepository } from 'test/repositories/in-memory-answers-r
 import { makeAnswer } from 'test/factories/make-answer';
 import { InMemoryAnswerCommentsRepository } from 'test/repositories/in-memory-answer-comments-repository';
 import { CommentOnAnswerUseCase } from './comment-on-answer';
+import { InMemoryAnswerAttachmentsRepository } from 'test/repositories/in-memory-answer-attachments-repository';
 
+let inMemoryAnswersAttachmentsRepository: InMemoryAnswerAttachmentsRepository
 let inMemoryAnswerRepository: InMemoryAnswersRepository
 let inMemoryAnswerCommentRepository: InMemoryAnswerCommentsRepository
 let sut: CommentOnAnswerUseCase
 
 describe('Comment on Answer', () => {
    beforeEach(() => {
-      inMemoryAnswerRepository = new InMemoryAnswersRepository()
+      inMemoryAnswersAttachmentsRepository =
+         new InMemoryAnswerAttachmentsRepository()
+      inMemoryAnswerRepository =
+         new InMemoryAnswersRepository(inMemoryAnswersAttachmentsRepository)
       inMemoryAnswerCommentRepository = new InMemoryAnswerCommentsRepository()
+      
       sut = new CommentOnAnswerUseCase(
          inMemoryAnswerRepository,
          inMemoryAnswerCommentRepository,

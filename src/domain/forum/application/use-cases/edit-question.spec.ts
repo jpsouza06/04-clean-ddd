@@ -11,8 +11,9 @@ let inMemoryQuestionAttachmentRepository: InMemoryQuestionAttachmentsRepository
 let sut: EditQuestionUseCase
 describe('Edit Question', () => {
    beforeEach(() => {
-      inMemoryQuestionsRepository = new InMemoryQuestionsRepository()
       inMemoryQuestionAttachmentRepository = new InMemoryQuestionAttachmentsRepository()
+      inMemoryQuestionsRepository = new InMemoryQuestionsRepository(inMemoryQuestionAttachmentRepository)
+
       sut = new EditQuestionUseCase(inMemoryQuestionsRepository, inMemoryQuestionAttachmentRepository)
    })
 
@@ -23,7 +24,7 @@ describe('Edit Question', () => {
 
       await inMemoryQuestionsRepository.create(newQuestion)
 
-      await inMemoryQuestionAttachmentRepository.items.push(
+      inMemoryQuestionAttachmentRepository.items.push(
          makeQuestionAttachment({
             questionId: newQuestion.id,
             attachmentId: new UniqueEntityId('1')
